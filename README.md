@@ -1,1 +1,1 @@
-# cookie_stand
+# This repo is for the cookie stand
