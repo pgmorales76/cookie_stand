@@ -39,6 +39,7 @@ let seattle = {
 console.log(seattle.random_number_of_customers(seattle.min_hourly_customer, seattle.max_hourly_customer, seattle.avg_cookie_per_customer));
 
 seattle.random_number_of_customers();
+seattle.simulated_amounts_of_cookies_purchased();
 
 let tokyo = {
   min_hourly_customer: 3,
