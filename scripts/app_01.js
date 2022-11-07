@@ -25,6 +25,9 @@ let seattle = {
   // Store the results for each location in a separate array… perhaps as a property of the object representing that location.
   simulated_amounts_of_cookies_purchased_for_seattle: [],
 
+  // Calculate the sum of these hourly totals
+  total_cookies_sold: 0,
+
   // Calculate and store the simulated amounts of cookies purchased for each hour at each location using average cookies purchased and the random
   // number of customers generated.
   simulated_amounts_of_cookies_purchased: function () {
@@ -32,12 +35,10 @@ let seattle = {
       let simulated_amount = this.random_number_of_customers(this.min_hourly_customer, this.max_hourly_customer) * this.avg_cookie_per_customer;
       console.log(simulated_amount);
       this.simulated_amounts_of_cookies_purchased_for_seattle.push(simulated_amount);
+      this.total_cookies_sold += simulated_amount;
       console.log(this.simulated_amounts_of_cookies_purchased_for_seattle);
     }
   },
-
-  // Calculate the sum of these hourly totals
-  total_cookies_sold: 0,
 
   // Display the values of each array as unordered lists in the browser.
   // Remember 4 Steps of DOM Manipulation!
@@ -83,6 +84,7 @@ let tokyo = {
       let simulated_amount = this.random_number_of_customers(this.min_hourly_customer, this.max_hourly_customer) * this.avg_cookie_per_customer;
       console.log(simulated_amount);
       this.simulated_amounts_of_cookies_purchased_for_tokyo.push(simulated_amount);
+      this.total_cookies_sold += simulated_amount;
       console.log(this.simulated_amounts_of_cookies_purchased_for_tokyo);
     }
   },
@@ -124,6 +126,7 @@ let dubai = {
       let simulated_amount = this.random_number_of_customers(this.min_hourly_customer, this.max_hourly_customer) * this.avg_cookie_per_customer;
       console.log(simulated_amount);
       this.simulated_amounts_of_cookies_purchased_for_dubai.push(simulated_amount);
+      this.total_cookies_sold += simulated_amount;
       console.log(this.simulated_amounts_of_cookies_purchased_for_dubai);
     }
   },
@@ -165,6 +168,7 @@ let paris = {
       let simulated_amount = this.random_number_of_customers(this.min_hourly_customer, this.max_hourly_customer) * this.avg_cookie_per_customer;
       console.log(simulated_amount);
       this.simulated_amounts_of_cookies_purchased_for_paris.push(simulated_amount);
+      this.total_cookies_sold += simulated_amount;
       console.log(this.simulated_amounts_of_cookies_purchased_for_paris);
     }
   },
@@ -206,6 +210,7 @@ let lima = {
       let simulated_amount = this.random_number_of_customers(this.min_hourly_customer, this.max_hourly_customer) * this.avg_cookie_per_customer;
       console.log(simulated_amount);
       this.simulated_amounts_of_cookies_purchased_for_lima.push(simulated_amount);
+      this.total_cookies_sold += simulated_amount;
       console.log(this.simulated_amounts_of_cookies_purchased_for_lima);
     }
   },
