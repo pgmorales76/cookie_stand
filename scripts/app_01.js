@@ -16,9 +16,23 @@ let seattle = {
   min_hourly_customer: 23,
   max_hourly_customer: 65,
   avg_cookie_per_customer: 6.3,
+
   // Use a method of that object to generate a random number of customers per hour.
   random_number_of_customers: function (min_hourly_customer, max_hourly_customer, avg_cookie_per_customer) {
     return (Math.floor(randBetween(min_hourly_customer, max_hourly_customer) * avg_cookie_per_customer));
+  },
+
+  // Store the results for each location in a separate array… perhaps as a property of the object representing that location.
+  simulated_amounts_of_cookies_purchased_for_seattle: [],
+
+  // Calculate and store the simulated amounts of cookies purchased for each hour at each location using average cookies purchased and the random number of customers generated.
+  simulated_amounts_of_cookies_purchased: function () {
+    for (let i = 0; i < hours_of_operation.length; i++) {
+      let simulated_amount = this.random_number_of_customers(this.min_hourly_customer, this.max_hourly_customer) * this.avg_cookie_per_customer;
+      console.log(simulated_amount);
+      this.simulated_amounts_of_cookies_purchased_for_seattle.push(simulated_amount);
+      console.log(this.simulated_amounts_of_cookies_purchased_for_seattle);
+    }
   },
 };
 
