@@ -35,11 +35,29 @@ let seattle = {
       console.log(this.simulated_amounts_of_cookies_purchased_for_seattle);
     }
   },
+
+  // Calculate the sum of these hourly totals
+  total_cookies_sold: 0,
+
+  // Display the values of each array as unordered lists in the browser.
+  display_values_for_seattle: function() {
+    this.simulated_amounts_of_cookies_purchased();
+    let seattle_display = document.getElementById('seattle');
+    for (let i = 0; i < hours_of_operation.length; i++) {
+      let list_item_element = document.createElement('li');
+      list_item_element.innerText = `${hours_of_operation[i]}: ${this.simulated_amounts_of_cookies_purchased_for_seattle}`;
+      seattle_display.appendChild(list_item_element);
+    }
+    let total_list_item_element = document.createElement('li');
+    total_list_item_element.innerText = `Total: ${this.total_cookies_sold}`;
+    seattle_display.appendChild(total_list_item_element);
+  }
 };
 
 console.log(seattle.random_number_of_customers(seattle.min_hourly_customer, seattle.max_hourly_customer, seattle.avg_cookie_per_customer));
 seattle.random_number_of_customers();
 seattle.simulated_amounts_of_cookies_purchased();
+seattle.display_values_for_seattle();
 
 let tokyo = {
   min_hourly_customer: 3,
@@ -139,3 +157,24 @@ let lima = {
 console.log(lima.random_number_of_customers(lima.min_hourly_customer, lima.max_hourly_customer, lima.avg_cookie_per_customer));
 lima.random_number_of_customers();
 lima.simulated_amounts_of_cookies_purchased();
+
+// Display the values of each array as unordered lists in the browser.
+// Remember 4 Steps of DOM Manipulation!
+// How to Create an HTML Element With JS (Thanks, Profs. Adam & Ben!)
+// 1. Select the parent element - document.getElementById()
+// 2. Create a new element - document.createElement()
+// 3. Fill created element with 'stuff' - .innerText  <--- this is a PROPERTY!!!
+// 4. Append the created element to the parent element - document.appendChild()
+
+// let display_values = document.getElementById('orders');
+// console.log('the parentElement is:', display_values);
+
+// let display_values_for_unordered_list_items = document.createElement('li');
+// console.log(display_values_for_unordered_list_items);
+
+// display_values_for_unordered_list_items.innerText = seattle.simulated_amounts_of_cookies_purchased_for_seattle,
+// tokyo.simulated_amounts_of_cookies_purchased_for_tokyo, dubai.simulated_amounts_of_cookies_purchased_for_dubai,
+// paris.simulated_amounts_of_cookies_purchased_for_paris, lima.simulated_amounts_of_cookies_purchased_for_lima; // properties do NOT use parentheses
+// console.log(display_values_for_unordered_list_items.innerText);
+
+// display_values.appendChild(display_values_for_unordered_list_items); // methods DO use parentheses
