@@ -11,8 +11,8 @@ function randBetween(min, max) {
   return min + Math.random() * (max - min);
 }
 
-// Store the min/max hourly customers, and the average cookies per customer, in object properties.
 let seattle = {
+  // Store the min/max hourly customers, and the average cookies per customer, in object properties.
   min_hourly_customer: 23,
   max_hourly_customer: 65,
   avg_cookie_per_customer: 6.3,
