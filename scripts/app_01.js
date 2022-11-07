@@ -3,16 +3,20 @@
 // proof of life
 console.log('Hello, world!');
 
+// hours of operation
 let hours_of_operation = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
+// Use a method of that object to generate a random number of customers per hour.
 function randBetween(min, max) {
   return min + Math.random() * (max - min);
 }
 
+// Store the min/max hourly customers, and the average cookies per customer, in object properties.
 let seattle = {
   min_hourly_customer: 23,
   max_hourly_customer: 65,
   avg_cookie_per_customer: 6.3,
+  // Use a method of that object to generate a random number of customers per hour.
   random_number: function (min_hourly_customer, max_hourly_customer, avg_cookie_per_customer) {
     return (Math.floor(randBetween(min_hourly_customer, max_hourly_customer) * avg_cookie_per_customer));
   },
