@@ -40,7 +40,6 @@ let seattle = {
   total_cookies_sold: 0,
 
   // Display the values of each array as unordered lists in the browser.
-  // Display the values of each array as unordered lists in the browser.
   // Remember 4 Steps of DOM Manipulation!
   // How to Create an HTML Element With JS (Thanks, Profs. Adam & Ben!)
   // 1. Select the parent element - document.getElementById()
@@ -50,12 +49,14 @@ let seattle = {
 
   display_values: function () {
     this.simulated_amounts_of_cookies_purchased();
+    // Create list item element for every hour, from hours of operation global array
     let seattle_display = document.getElementById('seattle');
     for (let i = 0; i < hours_of_operation.length; i++) {
       let list_item_element = document.createElement('li');
       list_item_element.innerText = `${hours_of_operation[i]}: ${this.simulated_amounts_of_cookies_purchased_for_seattle}`;
       seattle_display.appendChild(list_item_element);
     }
+    // Create list item element for total number of hours, for the location
     let total_list_item_element = document.createElement('li');
     total_list_item_element.innerText = `Total: ${this.total_cookies_sold}`;
     seattle_display.appendChild(total_list_item_element);
