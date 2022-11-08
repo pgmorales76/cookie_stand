@@ -231,3 +231,36 @@ let lima = {
 };
 
 lima.display_values();
+
+// Replace all of your object literals for the salmon cookie stand with a single constructor function that, when called with the
+// ‘new’ keyword, it creates a new instance.
+function City(min_hourly_customer, max_hourly_customer, avg_cookie_per_customer) {
+  this.min_hourly_customer = min_hourly_customer;
+  this.max_hourly_customer - max_hourly_customer;
+  this.avg_cookie_per_customer = avg_cookie_per_customer;
+  this.random_number_of_customers = function (min_hourly_customer, max_hourly_customer) {
+    let randomNum = randBetween(min_hourly_customer, max_hourly_customer);
+    console.log(randomNum);
+    return (Math.floor(randomNum));
+  },
+  this.simulated_amounts_of_cookies_purchased = [];
+  this.total_cookies_sold = 0;
+  this.simulated_amounts_of_cookies_purchased = function () {
+    for (let i = 0; i < hours_of_operation.length; i++) {
+      let simulated_amount = Math.round(this.random_number_of_customers(this.min_hourly_customer, this.max_hourly_customer) * this.avg_cookie_per_customer);
+      console.log(simulated_amount);
+      this.simulated_amounts_of_cookies_purchased.push(simulated_amount);
+      this.total_cookies_sold += simulated_amount;
+      console.log(this.simulated_amounts_of_cookies_purchased_for_seattle);
+    }
+  };
+}
+
+let seattle_location = new City(23, 65, 6.3, );
+let tokyo_location = new City(3, 24, 1.2, );
+let dubai_location = new City(11, 38, 3.7, );
+let paris_location = new City(20, 38, 2.3, );
+let lima_location = new City(2, 16, 4.6, );
+
+// Replace the lists of your data for each store and build a single table of data instead
+
