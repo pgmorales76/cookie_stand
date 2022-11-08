@@ -54,7 +54,6 @@ let seattle = {
     this.simulated_amounts_of_cookies_purchased();
     // Create list item element for every hour, from hours of operation global array
     let seattle_display = document.getElementById('seattle');
-    console.log(seattle_display);
     for (let i = 0; i < hours_of_operation.length; i++) {
       let list_item_element = document.createElement('li');
       list_item_element.innerText = `${hours_of_operation[i]}: ${this.simulated_amounts_of_cookies_purchased_for_seattle[i]}`;
