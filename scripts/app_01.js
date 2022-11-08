@@ -8,7 +8,7 @@ let hours_of_operation = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1
 
 // Use a method of each city object literal to generate a random number of customers per hour.
 function randBetween(min, max) {
-  return Math.random() * (max - min + 1) + min;
+  return Math.ceil(Math.random() * (max - min + 1) + min);
 }
 
 let seattle = {
@@ -34,7 +34,7 @@ let seattle = {
   // number of customers generated.
   simulated_amounts_of_cookies_purchased: function () {
     for (let i = 0; i < hours_of_operation.length; i++) {
-      let simulated_amount = this.random_number_of_customers(this.min_hourly_customer, this.max_hourly_customer) * this.avg_cookie_per_customer;
+      let simulated_amount = Math.round(this.random_number_of_customers(this.min_hourly_customer, this.max_hourly_customer) * this.avg_cookie_per_customer);
       console.log(simulated_amount);
       this.simulated_amounts_of_cookies_purchased_for_seattle.push(simulated_amount);
       this.total_cookies_sold += simulated_amount;
@@ -57,7 +57,7 @@ let seattle = {
     console.log(seattle_display);
     for (let i = 0; i < hours_of_operation.length; i++) {
       let list_item_element = document.createElement('li');
-      list_item_element.innerText = `${hours_of_operation[i]}: ${this.simulated_amounts_of_cookies_purchased_for_seattle}`;
+      list_item_element.innerText = `${hours_of_operation[i]}: ${this.simulated_amounts_of_cookies_purchased_for_seattle[i]}`;
       seattle_display.appendChild(list_item_element);
     }
     // Create list item element for total number of hours, for the location
@@ -67,7 +67,6 @@ let seattle = {
   }
 };
 
-seattle.simulated_amounts_of_cookies_purchased();
 seattle.display_values();
 
 let tokyo = {
@@ -87,7 +86,7 @@ let tokyo = {
 
   simulated_amounts_of_cookies_purchased: function () {
     for (let i = 0; i < hours_of_operation.length; i++) {
-      let simulated_amount = this.random_number_of_customers(this.min_hourly_customer, this.max_hourly_customer) * this.avg_cookie_per_customer;
+      let simulated_amount = Math.round(this.random_number_of_customers(this.min_hourly_customer, this.max_hourly_customer) * this.avg_cookie_per_customer);
       console.log(simulated_amount);
       this.simulated_amounts_of_cookies_purchased_for_tokyo.push(simulated_amount);
       this.total_cookies_sold += simulated_amount;
@@ -100,7 +99,7 @@ let tokyo = {
     let tokyo_display = document.getElementById('tokyo');
     for (let i = 0; i < hours_of_operation.length; i++) {
       let list_item_element = document.createElement('li');
-      list_item_element.innerText = `${hours_of_operation[i]}: ${this.simulated_amounts_of_cookies_purchased_for_tokyo}`;
+      list_item_element.innerText = `${hours_of_operation[i]}: ${this.simulated_amounts_of_cookies_purchased_for_tokyo[i]}`;
       tokyo_display.appendChild(list_item_element);
     }
     let total_list_item_element = document.createElement('li');
@@ -109,7 +108,6 @@ let tokyo = {
   }
 };
 
-tokyo.simulated_amounts_of_cookies_purchased();
 tokyo.display_values();
 
 let dubai = {
@@ -129,7 +127,7 @@ let dubai = {
 
   simulated_amounts_of_cookies_purchased: function () {
     for (let i = 0; i < hours_of_operation.length; i++) {
-      let simulated_amount = this.random_number_of_customers(this.min_hourly_customer, this.max_hourly_customer) * this.avg_cookie_per_customer;
+      let simulated_amount = Math.round(this.random_number_of_customers(this.min_hourly_customer, this.max_hourly_customer) * this.avg_cookie_per_customer);
       console.log(simulated_amount);
       this.simulated_amounts_of_cookies_purchased_for_dubai.push(simulated_amount);
       this.total_cookies_sold += simulated_amount;
@@ -142,7 +140,7 @@ let dubai = {
     let dubai_display = document.getElementById('dubai');
     for (let i = 0; i < hours_of_operation.length; i++) {
       let list_item_element = document.createElement('li');
-      list_item_element.innerText = `${hours_of_operation[i]}: ${this.simulated_amounts_of_cookies_purchased_for_dubai}`;
+      list_item_element.innerText = `${hours_of_operation[i]}: ${this.simulated_amounts_of_cookies_purchased_for_dubai[i]}`;
       dubai_display.appendChild(list_item_element);
     }
     let total_list_item_element = document.createElement('li');
@@ -151,7 +149,6 @@ let dubai = {
   }
 };
 
-dubai.simulated_amounts_of_cookies_purchased();
 dubai.display_values();
 
 let paris = {
@@ -171,7 +168,7 @@ let paris = {
 
   simulated_amounts_of_cookies_purchased: function () {
     for (let i = 0; i < hours_of_operation.length; i++) {
-      let simulated_amount = this.random_number_of_customers(this.min_hourly_customer, this.max_hourly_customer) * this.avg_cookie_per_customer;
+      let simulated_amount = Math.round(this.random_number_of_customers(this.min_hourly_customer, this.max_hourly_customer) * this.avg_cookie_per_customer);
       console.log(simulated_amount);
       this.simulated_amounts_of_cookies_purchased_for_paris.push(simulated_amount);
       this.total_cookies_sold += simulated_amount;
@@ -184,7 +181,7 @@ let paris = {
     let paris_display = document.getElementById('paris');
     for (let i = 0; i < hours_of_operation.length; i++) {
       let list_item_element = document.createElement('li');
-      list_item_element.innerText = `${hours_of_operation[i]}: ${this.simulated_amounts_of_cookies_purchased_for_paris}`;
+      list_item_element.innerText = `${hours_of_operation[i]}: ${this.simulated_amounts_of_cookies_purchased_for_paris[i]}`;
       paris_display.appendChild(list_item_element);
     }
     let total_list_item_element = document.createElement('li');
@@ -193,7 +190,6 @@ let paris = {
   }
 };
 
-paris.simulated_amounts_of_cookies_purchased();
 paris.display_values();
 
 let lima = {
@@ -213,7 +209,7 @@ let lima = {
 
   simulated_amounts_of_cookies_purchased: function () {
     for (let i = 0; i < hours_of_operation.length; i++) {
-      let simulated_amount = this.random_number_of_customers(this.min_hourly_customer, this.max_hourly_customer) * this.avg_cookie_per_customer;
+      let simulated_amount = Math.round(this.random_number_of_customers(this.min_hourly_customer, this.max_hourly_customer) * this.avg_cookie_per_customer);
       console.log(simulated_amount);
       this.simulated_amounts_of_cookies_purchased_for_lima.push(simulated_amount);
       this.total_cookies_sold += simulated_amount;
@@ -226,7 +222,7 @@ let lima = {
     let lima_display = document.getElementById('lima');
     for (let i = 0; i < hours_of_operation.length; i++) {
       let list_item_element = document.createElement('li');
-      list_item_element.innerText = `${hours_of_operation[i]}: ${this.simulated_amounts_of_cookies_purchased_for_lima}`;
+      list_item_element.innerText = `${hours_of_operation[i]}: ${this.simulated_amounts_of_cookies_purchased_for_lima[i]}`;
       lima_display.appendChild(list_item_element);
     }
     let total_list_item_element = document.createElement('li');
@@ -235,5 +231,4 @@ let lima = {
   }
 };
 
-lima.simulated_amounts_of_cookies_purchased();
 lima.display_values();
