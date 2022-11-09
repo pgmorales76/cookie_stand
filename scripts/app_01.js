@@ -53,6 +53,7 @@ Store.prototype.simulated_amounts_of_cookies_purchased = function () {
 // 4. Append the created element to the parent element - document.appendChild()
 
 // Replace the lists of your data for each store and build a single table of data instead
+// Each cookie stand location should have a separate render() method that creates and appends its row to the table
 // The method below will display values for cookies sold/hour from the method on lines 37-45
 Store.prototype.display_values = function () {
   this.simulated_amounts_of_cookies_purchased();
@@ -73,6 +74,7 @@ Store.prototype.display_values = function () {
 };
 
 // The method below will display values for the total number of cookies sold/hour/location
+// The header row and footer row are each created in their own stand-alone function
 function total_location_cookies() {
   let table_footer = document.querySelector('tfoot');
   let table_footer_row = document.createElement('tr');
