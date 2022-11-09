@@ -75,3 +75,4 @@ let tokyo_location = new Store('Tokyo', 3, 24, 1.2);
 let dubai_location = new Store('Dubai', 11, 38, 3.7);
 let paris_location = new Store('Paris', 20, 38, 2.3);
 let lima_location = new Store('Lima', 2, 16, 4.6);
+
