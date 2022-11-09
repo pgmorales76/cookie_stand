@@ -22,14 +22,14 @@ function Store(location, min_hourly_customer, max_hourly_customer, avg_cookie_pe
   // Store the results for each location in a separate array… perhaps as a property of the Constructor representing that location.
   this.simulated_amounts_of_cookies_purchased = [];
   // Calculate the sum of these hourly totals
-  this.total_cookies_sold = 0
-};
+  this.total_cookies_sold = 0;
+}
 
 // Use a method of that constructor to generate a random number of customers per hour.
 Store.prototype.random_number_of_customers = function (min_hourly_customer, max_hourly_customer) {
-let randomNum = randBetween(min_hourly_customer, max_hourly_customer);
-console.log(randomNum);
-return (Math.floor(randomNum));
+  let randomNum = randBetween(min_hourly_customer, max_hourly_customer);
+  console.log(randomNum);
+  return (Math.floor(randomNum));
 };
 
 // Calculate and store the simulated amounts of cookies purchased for each hour at each location using average cookies purchased and the random
@@ -44,20 +44,10 @@ Store.prototype.simulated_amounts_of_cookies_purchased = function () {
   }
 },
 
-// Display the values of each array as unordered lists in the browser.
-// Remember 4 Steps of DOM Manipulation!
-// How to Create an HTML Element With JS (Thanks, Profs. Adam & Ben!)
-// 1. Select the parent element - document.getElementById()
-// 2. Create a new element - document.createElement()
-// 3. Fill created element with 'stuff' - .innerText  <--- this is a PROPERTY!!!
-// 4. Append the created element to the parent element - document.appendChild()
 
 // Replace the lists of your data for each store and build a single table of data instead
-
-
-display_values: function () {
+Store.prototype.display_values = function () {
   this.simulated_amounts_of_cookies_purchased();
-  // Create list item element for every hour, from hours of operation global array
   let seattle_display = document.getElementById('seattle');
   for (let i = 0; i < hours_of_operation.length; i++) {
     let list_item_element = document.createElement('li');
@@ -76,3 +66,10 @@ let dubai_location = new Store('Dubai', 11, 38, 3.7);
 let paris_location = new Store('Paris', 20, 38, 2.3);
 let lima_location = new Store('Lima', 2, 16, 4.6);
 
+// Display the values of each array as unordered lists in the browser.
+// Remember 4 Steps of DOM Manipulation!
+// How to Create an HTML Element With JS (Thanks, Profs. Adam & Ben!)
+// 1. Select the parent element - document.getElementById()
+// 2. Create a new element - document.createElement()
+// 3. Fill created element with 'stuff' - .innerText  <--- this is a PROPERTY!!!
+// 4. Append the created element to the parent element - document.appendChild()
