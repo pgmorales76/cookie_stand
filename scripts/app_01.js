@@ -47,16 +47,20 @@ Store.prototype.simulated_amounts_of_cookies_purchased = function () {
 // Replace the lists of your data for each store and build a single table of data instead
 Store.prototype.display_values = function () {
   this.simulated_amounts_of_cookies_purchased();
-  let seattle_display = document.getElementById('seattle');
+  let location_data = document.getElementById('location_data');
+  let location_tr = document.createElement('tr');
+  let location_th = document.createElement('th');
+  location_tr.appendChild(location_th);
+  location_th.innerText = this.location;
   for (let i = 0; i < hours_of_operation.length; i++) {
-    let list_item_element = document.createElement('li');
-    list_item_element.innerText = `${hours_of_operation[i]}: ${this.simulated_amounts_of_cookies_purchased[i]}`;
-    seattle_display.appendChild(list_item_element);
+    let location_td = document.createElement('td');
+    location_td.innerText = this.simulated_amounts_of_cookies_purchased[i];
+    location_tr.appendChild(location_td);
   }
-  // Create list item element for total number of hours, for the location
-  let total_list_item_element = document.createElement('li');
-  total_list_item_element.innerText = `Total: ${this.total_cookies_sold}`;
-  seattle_display.appendChild(total_list_item_element);
+  let location_total = document.createElement('td');
+  location_total.innerText = this.total_cookies_sold;
+  location_tr.appendChild(location_total);
+  location_data.appendChild(location_tr);
 };
 
 let seattle_location = new Store('Seattle', 23, 65, 6.3);
