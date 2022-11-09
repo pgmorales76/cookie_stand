@@ -44,7 +44,6 @@ Store.prototype.simulated_amounts_of_cookies_purchased = function () {
   }
 },
 
-
 // Replace the lists of your data for each store and build a single table of data instead
 Store.prototype.display_values = function () {
   this.simulated_amounts_of_cookies_purchased();
