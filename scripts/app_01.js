@@ -53,7 +53,7 @@ Store.prototype.simulated_amounts_of_cookies_purchased = function () {
 // 4. Append the created element to the parent element - document.appendChild()
 
 // Replace the lists of your data for each store and build a single table of data instead
-
+// Testing
 
 display_values: function () {
   this.simulated_amounts_of_cookies_purchased();
