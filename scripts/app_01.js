@@ -1,4 +1,4 @@
-'use sctrict';
+'use strict';
 
 // proof of life
 console.log('Hello, world!');
@@ -17,17 +17,17 @@ function randBetween(min, max) {
 function Store(location, min_hourly_customer, max_hourly_customer, avg_cookie_per_customer) {
   this.location = location;
   this.min_hourly_customer = min_hourly_customer;
-  this.max_hourly_customer - max_hourly_customer;
+  this.max_hourly_customer = max_hourly_customer;
   this.avg_cookie_per_customer = avg_cookie_per_customer;
   // Store the results for each location in a separate array… perhaps as a property of the Constructor representing that location.
-  this.simulated_amounts_of_cookies_purchased = [];
+  this.simulated_amounts_of_cookies_purchased_array = [];
   // Calculate the sum of these hourly totals
   this.total_cookies_sold = 0;
 }
 
 // Use a method of that constructor to generate a random number of customers per hour.
-Store.prototype.random_number_of_customers = function (min_hourly_customer, max_hourly_customer) {
-  let randomNum = randBetween(min_hourly_customer, max_hourly_customer);
+Store.prototype.random_number_of_customers = function () {
+  let randomNum = randBetween(this.min_hourly_customer, this.max_hourly_customer);
   console.log(randomNum);
   return (Math.floor(randomNum));
 };
@@ -36,9 +36,9 @@ Store.prototype.random_number_of_customers = function (min_hourly_customer, max_
 // number of customers generated.
 Store.prototype.simulated_amounts_of_cookies_purchased = function () {
   for (let i = 0; i < hours_of_operation.length; i++) {
-    let simulated_amount = Math.round(this.random_number_of_customers(this.min_hourly_customer, this.max_hourly_customer) * this.avg_cookie_per_customer);
+    let simulated_amount = Math.round(this.random_number_of_customers() * this.avg_cookie_per_customer);
     console.log(simulated_amount);
-    this.simulated_amounts_of_cookies_purchased.push(simulated_amount);
+    this.simulated_amounts_of_cookies_purchased_array.push(simulated_amount);
     this.total_cookies_sold += simulated_amount;
     console.log(this.simulated_amounts_of_cookies_purchased);
   }
@@ -64,7 +64,7 @@ Store.prototype.display_values = function () {
   location_th.innerText = this.location;
   for (let i = 0; i < hours_of_operation.length; i++) {
     let location_td = document.createElement('td');
-    location_td.innerText = this.simulated_amounts_of_cookies_purchased[i];
+    location_td.innerText = this.simulated_amounts_of_cookies_purchased_array[i];
     location_tr.appendChild(location_td);
   }
   let location_total = document.createElement('td');
@@ -89,7 +89,8 @@ function total_location_cookies() {
     let total_sold_per_hour = 0;
     // The second for statement iterates through each hour of operation at each location
     for (let j = 0; j < location_array.length; j++) {
-      let table_data = location_array[j].simulated_amounts_of_cookies_purchased[i];
+      let table_data = location_array[j].simulated_amounts_of_cookies_purchased_array[i];
+      console.log(table_data);
       total_sold_per_hour += table_data;
       total_location_cookies_sold += table_data;
     }
@@ -117,6 +118,7 @@ function display_location_values(arr) {
   }
 }
 
-total_location_cookies();
 
 display_location_values(location_array);
+
+total_location_cookies();
