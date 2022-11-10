@@ -71,6 +71,7 @@ Store.prototype.display_values = function () {
   location_total.innerText = this.total_cookies_sold;
   location_tr.appendChild(location_total);
   location_data.appendChild(location_tr);
+  console.log(this.display_values);
 };
 
 // The method below will display values for the total number of cookies sold/hour/location
@@ -117,7 +118,6 @@ function display_location_values(arr) {
     arr[i].display_values();
   }
 }
-
 
 display_location_values(location_array);
 
