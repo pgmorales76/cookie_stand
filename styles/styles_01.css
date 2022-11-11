@@ -1,6 +1,71 @@
+/* color palette for above declaration: https://convertingcolors.com/color-bucket/view/FA8072.html */
+
 body {
     background: hsl(6, 93%, 71%);
     text-align: center;
+    /* background-color: #7E98B5; */
+    color: #1F2A37;
+    font-family: 'Times New Roman', Times, serif;
 }
 
-/* color palette for above declaration: https://convertingcolors.com/color-bucket/view/FA8072.html */
+h1 {
+    color: #1F2A37;
+    font-size: 2.6em;
+    /* border-bottom: 5px solid #1F2A37; */
+}
+
+nav, aside ul {
+    background-color: #D3B299;
+    border: 5px solid #1F2A37;
+    list-style-type: none;
+    overflow: hidden;
+    font-size: 1.3em;
+    width: 90%;
+    margin: auto;
+}
+
+nav ul {
+    width: 90%;
+    float: left;
+}
+
+ul {
+    width: 70%;
+    display: flex;
+}
+
+li {
+    float: left;
+    display: block;
+    padding: 9px;
+    text-decoration: none;
+    margin: auto;
+}
+
+form {
+    float: right;
+    margin: 0.6%;
+}
+
+main {
+    margin: 2em;
+    font-size: 25px;
+}
+
+a:link,
+a:visited {
+    color: #a211eb;
+}
+
+a:hover {
+    text-decoration: none;
+    color: rgb(7, 211, 48);
+}
+
+p {
+    text-align: left;
+}
+
+footer p {
+    text-align: center;
+}
