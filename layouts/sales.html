@@ -6,15 +6,42 @@
     <meta name="author, viewport" content="Peter G. Morales, width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Pat's Salmon Cookies</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="../styles/styles_02.css">
-    <link rel="icon" href="../images/favicon_io/favicon.ico" type="image/png">
+    <link rel="stylesheet" type="text/css" media="screen" href="../styles/styles_01.css" />
+    <link rel="icon" href="../images/favicon_io/favicon.ico" type="image/png" />
 </head>
 
 <body>
 
     <head>
-        <h1>Sales</h1>
-        <h2><a href="../index.html">Home</a></h2>
+        <h1>Coming soon to a table near you . . . PAT'S SALMON COOKIES!!!</h1>
+        <img src="../images/salmon.png" alt="A picture of a salmon" />
+        <nav>
+            <ul>
+                <li>
+                    <h2><a href="../index.html">Home</a></h2>
+                </li>
+
+                <li>
+                    <h2><a href="../layouts/locations.html">Locations</a></h2>
+                </li>
+
+                <li>
+                    <h2><a href="../layouts/hours.html">Hours</a></h2>
+                </li>
+
+                <li>
+                    <h2><a href="../layouts/contact.html">Contact Us</a></h2>
+                </li>
+
+                <li>
+                    <form>
+                        <input type="search" name="q" placeholder="Search query" />
+                        <input type="submit" value="Go!" />
+                    </form>
+                </li>
+
+            </ul>
+        </nav>
     </head>
 
     <main>
@@ -54,13 +81,29 @@
 
         </table>
 
-        <!-- <h2>
-            <ul id='seattle'>Seattle</ul>
-            <ul id='tokyo'>Tokyo</ul>
-            <ul id='dubai'>Dubai</ul>
-            <ul id='paris'>Paris</ul>
-            <ul id='lima'>Lima</ul>
-        </h2> -->
+        <form id="location_form">
+
+            <fieldset>
+
+                <legend>Location Form</legend>
+
+                <label>
+                    Variety:
+                    <input type="text" name="variety" required placeholder="Enter Variety Here" />
+                </label>
+                <label>
+                    Color:
+                    <input type="text" name="color" required />
+                </label>
+                <label>
+                    Expiration:
+                    <input type="number" name="expiration" required min="1" max="5" step=".1" />
+                </label>
+                <button type="submit">Submit Location</button>
+
+            </fieldset>
+
+        </form>
 
     </main>
 
