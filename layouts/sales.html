@@ -81,7 +81,29 @@
 
         </table>
 
-        
+        <form id="location_form">
+
+            <fieldset>
+
+                <legend>Location Form</legend>
+
+                <label>
+                    Variety:
+                    <input type="text" name="variety" required placeholder="Enter Variety Here" />
+                </label>
+                <label>
+                    Color:
+                    <input type="text" name="color" required />
+                </label>
+                <label>
+                    Expiration:
+                    <input type="number" name="expiration" required min="1" max="5" step=".1" />
+                </label>
+                <button type="submit">Submit Location</button>
+
+            </fieldset>
+
+        </form>
 
     </main>
 
