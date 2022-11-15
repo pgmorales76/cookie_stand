@@ -88,17 +88,25 @@
                 <legend>Location Form</legend>
 
                 <label>
-                    Variety:
-                    <input type="text" name="variety" required placeholder="Enter Variety Here" />
+                    City:
+                    <input type="text" name="location" required placeholder="Enter City Here" />
                 </label>
+
                 <label>
-                    Color:
-                    <input type="text" name="color" required />
+                    Minimum Hourly Customers:
+                    <input type="number" name="min_hourly_customer" required min="1" step="1" placeholder="Enter Min. Hourly Customers" />
                 </label>
+
                 <label>
-                    Expiration:
-                    <input type="number" name="expiration" required min="1" max="5" step=".1" />
+                    Maximum Hourly Customers:
+                    <input type="number" name="max_hourly_customer" required min="1" step="1" placeholder="Enter Max. Hourly Customers" />
                 </label>
+
+                <label>
+                    Average Cookies Per Customer:
+                    <input type="number" name="avg_cookie_per_customer" required min="1" step="1" placeholder="Enter Average Cookies Per Customer" />
+                </label>
+
                 <button type="submit">Submit Location</button>
 
             </fieldset>
