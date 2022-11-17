@@ -116,7 +116,7 @@ let location_array = [seattle_location, tokyo_location, dubai_location, paris_lo
 
 // Declaring the Store constructor function to display the location values, with reference to the array, passed in as an argument value
 function display_location_values(arr) {
-  for(let i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     arr[i].display_values();
   }
 }
@@ -136,3 +136,24 @@ let location_form = document.getElementById('location_form');
 // The first argument value is a reference to the type attribute value, given to the HTML button element, the event listener "listens" for, from sales.html
 // The second argument value is the name of the event handler function
 location_form.addEventListener('submit', user_location_input);
+
+// Adding an event handler
+function user_location_input(event) {
+  event.preventDefault();
+  let form = event.target;
+  let location = form.location.value;
+  let min_hourly_customer = form.min_hourly_customer.value;
+  let max_hourly_customer = form.max_hourly_customer.value;
+  let avg_cookie_per_customer = form.avg_cookie_per_customer.value;
+
+  // console.log(event);
+  // What's being console logged is the form variable, the name attribute value, from the HTML input element, from sales.html; then the value property.
+  // Do this for every one of the input elements!
+  console.log('Location is:', location, 'Min. Hourly Customers are:', min_hourly_customer, 'Max. Hourly Customers are:', max_hourly_customer,'Avg. Cookies Purchased Per Customer are:', avg_cookie_per_customer);
+
+  // Creating a new instance of the Store constructor
+  let new_location = new Store(location, min_hourly_customer, max_hourly_customer, avg_cookie_per_customer);
+
+  // Invoking the new location instance with the render function
+  new_location.render();
+}
