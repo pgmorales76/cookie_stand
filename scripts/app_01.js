@@ -111,14 +111,28 @@ let dubai_location = new Store('Dubai', 11, 38, 3.7);
 let paris_location = new Store('Paris', 20, 38, 2.3);
 let lima_location = new Store('Lima', 2, 16, 4.6);
 
+// Declaring the location array, with references to the instances of the Store constructor just above
 let location_array = [seattle_location, tokyo_location, dubai_location, paris_location, lima_location];
 
+// Declaring the Store constructor function to display the location values, with reference to the array, passed in as an argument value
 function display_location_values(arr) {
   for(let i = 0; i < arr.length; i++) {
     arr[i].display_values();
   }
 }
 
+// Invoking the function to display the location values, with the location array passed in as an argument value
 display_location_values(location_array);
 
+// Invoking the function for the total cookies in each location
 total_location_cookies();
+
+// Adding an event listener
+// What's passed in as an argument value for the Document method getElementById() is the id attribute value for the HTML form element in sales.html
+let location_form = document.getElementById('location_form');
+
+// The syntax here is the variable name declared for the Document method getElementById(), using dot notation, and attaching the addEventListener()
+// method of the EventTarget interface
+// The first argument value is a reference to the type attribute value, given to the HTML button element, the event listener "listens" for, from sales.html
+// The second argument value is the name of the event handler function
+location_form.addEventListener('submit', user_location_input);
