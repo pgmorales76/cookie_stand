@@ -133,7 +133,8 @@ let location_form = document.getElementById('location_form');
 
 // The syntax here is the variable name declared for the Document method getElementById(), using dot notation, and attaching the addEventListener()
 // method of the EventTarget interface
-// The first argument value is a reference to the type attribute value, given to the HTML button element, the event listener "listens" for, from sales.html
+// The first argument value is a reference to the type attribute value, given to the HTML button element, the event listener "listens" for,
+// from sales.html
 // The second argument value is the name of the event handler function
 location_form.addEventListener('submit', user_location_input);
 
@@ -149,7 +150,8 @@ function user_location_input(event) {
   // console.log(event);
   // What's being console logged is the form variable, the name attribute value, from the HTML input element, from sales.html; then the value property.
   // Do this for every one of the input elements!
-  console.log('Location is:', location, 'Min. Hourly Customers are:', min_hourly_customer, 'Max. Hourly Customers are:', max_hourly_customer,'Avg. Cookies Purchased Per Customer are:', avg_cookie_per_customer);
+  console.log('Location is:', location, 'Min. Hourly Customers are:', min_hourly_customer, 'Max. Hourly Customers are:', max_hourly_customer,
+    'Avg. Cookies Purchased Per Customer are:', avg_cookie_per_customer);
 
   // Creating a new instance of the Store constructor
   let new_location = new Store(location, min_hourly_customer, max_hourly_customer, avg_cookie_per_customer);
