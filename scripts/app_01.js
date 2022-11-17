@@ -3,6 +3,8 @@
 // proof of life
 console.log('Hello, world!');
 
+Store.all = [];
+
 // hours of operation
 let hours_of_operation = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
@@ -23,6 +25,8 @@ function Store(location, min_hourly_customer, max_hourly_customer, avg_cookie_pe
   this.simulated_amounts_of_cookies_purchased_array = [];
   // Calculate the sum of these hourly totals
   this.total_cookies_sold = 0;
+  Store.all.push(this);
+  this.display_values();
 }
 
 // Use a method of that constructor to generate a random number of customers per hour.
@@ -89,8 +93,8 @@ function total_location_cookies() {
   for (let i = 0; i < hours_of_operation.length; i++) {
     let total_sold_per_hour = 0;
     // The second for statement iterates through each hour of operation at each location
-    for (let j = 0; j < location_array.length; j++) {
-      let table_data = location_array[j].simulated_amounts_of_cookies_purchased_array[i];
+    for (let j = 0; j < Store.all.length; j++) {
+      let table_data = Store.all[j].simulated_amounts_of_cookies_purchased_array[i];
       console.log(table_data);
       total_sold_per_hour += table_data;
       total_location_cookies_sold += table_data;
@@ -105,20 +109,63 @@ function total_location_cookies() {
 }
 
 // New instances of the Store constructor
-let seattle_location = new Store('Seattle', 23, 65, 6.3);
-let tokyo_location = new Store('Tokyo', 3, 24, 1.2);
-let dubai_location = new Store('Dubai', 11, 38, 3.7);
-let paris_location = new Store('Paris', 20, 38, 2.3);
-let lima_location = new Store('Lima', 2, 16, 4.6);
+new Store('Seattle', 23, 65, 6.3);
+new Store('Tokyo', 3, 24, 1.2);
+new Store('Dubai', 11, 38, 3.7);
+new Store('Paris', 20, 38, 2.3);
+new Store('Lima', 2, 16, 4.6);
 
-let location_array = [seattle_location, tokyo_location, dubai_location, paris_location, lima_location];
+// Declaring the location array, with references to the instances of the Store constructor just above
+// let location_array = [seattle_location, tokyo_location, dubai_location, paris_location, lima_location];
 
-function display_location_values(arr) {
-  for(let i = 0; i < arr.length; i++) {
-    arr[i].display_values();
-  }
-}
 
-display_location_values(location_array);
+// Declaring the Store constructor function to display the location values, with reference to the array, passed in as an argument value
+// function display_location_values(arr) {
+//   for (let i = 0; i < arr.length; i++) {
+//     arr[i].display_values();
+//   }
+// }
 
+// Invoking the function to display the location values, with the location array passed in as an argument value
+// display_location_values(location_array);
+
+// Invoking the function for the total cookies in each location
 total_location_cookies();
+
+// Adding an event listener
+// What's passed in as an argument value for the Document method getElementById() is the id attribute value for the HTML form element in sales.html
+let location_form = document.getElementById('location_form');
+
+// The syntax here is the variable name declared for the Document method getElementById(), using dot notation, and attaching the addEventListener()
+// method of the EventTarget interface
+// The first argument value is a reference to the type attribute value, given to the HTML button element, the event listener "listens" for,
+// from sales.html
+// The second argument value is the name of the event handler function
+location_form.addEventListener('submit', user_location_input);
+
+// Adding an event handler
+function user_location_input(event) {
+  event.preventDefault();
+  let form = event.target;
+  let location = form.location.value;
+  let min_hourly_customer = form.min_hourly_customer.value;
+  let max_hourly_customer = form.max_hourly_customer.value;
+  let avg_cookie_per_customer = form.avg_cookie_per_customer.value;
+
+  // console.log(event);
+  // What's being console logged is the form variable, the name attribute value, from the HTML input element, from sales.html; then the value property.
+  // Do this for every one of the input elements!
+  console.log('Location is:', location, 'Min. Hourly Customers are:', min_hourly_customer, 'Max. Hourly Customers are:', max_hourly_customer,
+    'Avg. Cookies Purchased Per Customer are:', avg_cookie_per_customer);
+
+  // Creating a new instance of the Store constructor
+  new Store(location, min_hourly_customer, max_hourly_customer, avg_cookie_per_customer);
+  let table_footer = document.querySelector('tfoot');
+  table_footer.innerHTML = '';
+  total_location_cookies();
+  // location_array.push(new_location);
+
+  // Invoking the new location instance with the render function
+  // display_location_values(location_array);
+  // total_location_cookies();
+}
