@@ -3,8 +3,6 @@
 // proof of life
 console.log('Hello, world!');
 
-Store.all = [];
-
 // hours of operation
 let hours_of_operation = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
@@ -25,8 +23,6 @@ function Store(location, min_hourly_customer, max_hourly_customer, avg_cookie_pe
   this.simulated_amounts_of_cookies_purchased_array = [];
   // Calculate the sum of these hourly totals
   this.total_cookies_sold = 0;
-  Store.all.push(this);
-  this.display_values();
 }
 
 // Use a method of that constructor to generate a random number of customers per hour.
@@ -48,35 +44,35 @@ Store.prototype.simulated_amounts_of_cookies_purchased = function () {
   }
 },
 
-// Display the values of each array as unordered lists in the browser.
-// Remember 4 Steps of DOM Manipulation!
-// How to Create an HTML Element With JS (Thanks, Profs. Adam & Ben!)
-// 1. Select the parent element - document.getElementById()
-// 2. Create a new element - document.createElement()
-// 3. Fill created element with 'stuff' - .innerText  <--- this is a PROPERTY!!!
-// 4. Append the created element to the parent element - document.appendChild()
+  // Display the values of each array as unordered lists in the browser.
+  // Remember 4 Steps of DOM Manipulation!
+  // How to Create an HTML Element With JS (Thanks, Profs. Adam & Ben!)
+  // 1. Select the parent element - document.getElementById()
+  // 2. Create a new element - document.createElement()
+  // 3. Fill created element with 'stuff' - .innerText  <--- this is a PROPERTY!!!
+  // 4. Append the created element to the parent element - document.appendChild()
 
-// Replace the lists of your data for each store and build a single table of data instead
-// Each cookie stand location should have a separate render() method that creates and appends its row to the table
-// The method below will display values for cookies sold/hour from the method on lines 37-45
-Store.prototype.display_values = function () {
-  this.simulated_amounts_of_cookies_purchased();
-  let location_data = document.getElementById('location_data');
-  let location_tr = document.createElement('tr');
-  let location_th = document.createElement('th');
-  location_tr.appendChild(location_th);
-  location_th.innerText = this.location;
-  for (let i = 0; i < hours_of_operation.length; i++) {
-    let location_td = document.createElement('td');
-    location_td.innerText = this.simulated_amounts_of_cookies_purchased_array[i];
-    location_tr.appendChild(location_td);
-  }
-  let location_total = document.createElement('td');
-  location_total.innerText = this.total_cookies_sold;
-  location_tr.appendChild(location_total);
-  location_data.appendChild(location_tr);
-  console.log(this.display_values);
-};
+  // Replace the lists of your data for each store and build a single table of data instead
+  // Each cookie stand location should have a separate render() method that creates and appends its row to the table
+  // The method below will display values for cookies sold/hour from the method on lines 37-45
+  Store.prototype.display_values = function () {
+    this.simulated_amounts_of_cookies_purchased();
+    let location_data = document.getElementById('location_data');
+    let location_tr = document.createElement('tr');
+    let location_th = document.createElement('th');
+    location_tr.appendChild(location_th);
+    location_th.innerText = this.location;
+    for (let i = 0; i < hours_of_operation.length; i++) {
+      let location_td = document.createElement('td');
+      location_td.innerText = this.simulated_amounts_of_cookies_purchased_array[i];
+      location_tr.appendChild(location_td);
+    }
+    let location_total = document.createElement('td');
+    location_total.innerText = this.total_cookies_sold;
+    location_tr.appendChild(location_total);
+    location_data.appendChild(location_tr);
+    console.log(this.display_values);
+  };
 
 // The method below will display values for the total number of cookies sold/hour/location
 // The header row and footer row are each created in their own stand-alone function
@@ -93,8 +89,8 @@ function total_location_cookies() {
   for (let i = 0; i < hours_of_operation.length; i++) {
     let total_sold_per_hour = 0;
     // The second for statement iterates through each hour of operation at each location
-    for (let j = 0; j < Store.all.length; j++) {
-      let table_data = Store.all[j].simulated_amounts_of_cookies_purchased_array[i];
+    for (let j = 0; j < location_array.length; j++) {
+      let table_data = location_array[j].simulated_amounts_of_cookies_purchased_array[i];
       console.log(table_data);
       total_sold_per_hour += table_data;
       total_location_cookies_sold += table_data;
@@ -109,25 +105,24 @@ function total_location_cookies() {
 }
 
 // New instances of the Store constructor
-new Store('Seattle', 23, 65, 6.3);
-new Store('Tokyo', 3, 24, 1.2);
-new Store('Dubai', 11, 38, 3.7);
-new Store('Paris', 20, 38, 2.3);
-new Store('Lima', 2, 16, 4.6);
+let seattle_location = new Store('Seattle', 23, 65, 6.3);
+let tokyo_location = new Store('Tokyo', 3, 24, 1.2);
+let dubai_location = new Store('Dubai', 11, 38, 3.7);
+let paris_location = new Store('Paris', 20, 38, 2.3);
+let lima_location = new Store('Lima', 2, 16, 4.6);
 
 // Declaring the location array, with references to the instances of the Store constructor just above
-// let location_array = [seattle_location, tokyo_location, dubai_location, paris_location, lima_location];
-
+let location_array = [seattle_location, tokyo_location, dubai_location, paris_location, lima_location];
 
 // Declaring the Store constructor function to display the location values, with reference to the array, passed in as an argument value
-// function display_location_values(arr) {
-//   for (let i = 0; i < arr.length; i++) {
-//     arr[i].display_values();
-//   }
-// }
+function display_location_values(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    arr[i].display_values();
+  }
+}
 
 // Invoking the function to display the location values, with the location array passed in as an argument value
-// display_location_values(location_array);
+display_location_values(location_array);
 
 // Invoking the function for the total cookies in each location
 total_location_cookies();
@@ -159,13 +154,10 @@ function user_location_input(event) {
     'Avg. Cookies Purchased Per Customer are:', avg_cookie_per_customer);
 
   // Creating a new instance of the Store constructor
-  new Store(location, min_hourly_customer, max_hourly_customer, avg_cookie_per_customer);
-  let table_footer = document.querySelector('tfoot');
-  table_footer.innerHTML = '';
-  total_location_cookies();
-  // location_array.push(new_location);
+  let new_location = new Store(location, min_hourly_customer, max_hourly_customer, avg_cookie_per_customer);
+  location_array.push(new_location);
 
   // Invoking the new location instance with the render function
-  // display_location_values(location_array);
-  // total_location_cookies();
+  display_location_values(location_array);
+  total_location_cookies();
 }
