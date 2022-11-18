@@ -44,35 +44,35 @@ Store.prototype.simulated_amounts_of_cookies_purchased = function () {
   }
 },
 
-  // Display the values of each array as unordered lists in the browser.
-  // Remember 4 Steps of DOM Manipulation!
-  // How to Create an HTML Element With JS (Thanks, Profs. Adam & Ben!)
-  // 1. Select the parent element - document.getElementById()
-  // 2. Create a new element - document.createElement()
-  // 3. Fill created element with 'stuff' - .innerText  <--- this is a PROPERTY!!!
-  // 4. Append the created element to the parent element - document.appendChild()
+// Display the values of each array as unordered lists in the browser.
+// Remember 4 Steps of DOM Manipulation!
+// How to Create an HTML Element With JS (Thanks, Profs. Adam & Ben!)
+// 1. Select the parent element - document.getElementById()
+// 2. Create a new element - document.createElement()
+// 3. Fill created element with 'stuff' - .innerText  <--- this is a PROPERTY!!!
+// 4. Append the created element to the parent element - document.appendChild()
 
-  // Replace the lists of your data for each store and build a single table of data instead
-  // Each cookie stand location should have a separate render() method that creates and appends its row to the table
-  // The method below will display values for cookies sold/hour from the method on lines 37-45
-  Store.prototype.display_values = function () {
-    this.simulated_amounts_of_cookies_purchased();
-    let location_data = document.getElementById('location_data');
-    let location_tr = document.createElement('tr');
-    let location_th = document.createElement('th');
-    location_tr.appendChild(location_th);
-    location_th.innerText = this.location;
-    for (let i = 0; i < hours_of_operation.length; i++) {
-      let location_td = document.createElement('td');
-      location_td.innerText = this.simulated_amounts_of_cookies_purchased_array[i];
-      location_tr.appendChild(location_td);
-    }
-    let location_total = document.createElement('td');
-    location_total.innerText = this.total_cookies_sold;
-    location_tr.appendChild(location_total);
-    location_data.appendChild(location_tr);
-    console.log(this.display_values);
-  };
+// Replace the lists of your data for each store and build a single table of data instead
+// Each cookie stand location should have a separate render() method that creates and appends its row to the table
+// The method below will display values for cookies sold/hour from the method on lines 37-45
+Store.prototype.display_values = function () {
+  this.simulated_amounts_of_cookies_purchased();
+  let location_data = document.getElementById('location_data');
+  let location_tr = document.createElement('tr');
+  let location_th = document.createElement('th');
+  location_tr.appendChild(location_th);
+  location_th.innerText = this.location;
+  for (let i = 0; i < hours_of_operation.length; i++) {
+    let location_td = document.createElement('td');
+    location_td.innerText = this.simulated_amounts_of_cookies_purchased_array[i];
+    location_tr.appendChild(location_td);
+  }
+  let location_total = document.createElement('td');
+  location_total.innerText = this.total_cookies_sold;
+  location_tr.appendChild(location_total);
+  location_data.appendChild(location_tr);
+  console.log(this.display_values);
+};
 
 // The method below will display values for the total number of cookies sold/hour/location
 // The header row and footer row are each created in their own stand-alone function
