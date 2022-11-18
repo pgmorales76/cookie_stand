@@ -156,6 +156,10 @@ function user_location_input(event) {
   // Creating a new instance of the Store constructor
   let new_location = new Store(location, min_hourly_customer, max_hourly_customer, avg_cookie_per_customer);
   location_array.push(new_location);
+  let location_data = document.getElementById('location_data');
+  location_data.textContent = '';
+  let table_footer = document.querySelector('tfoot');
+  table_footer.textContent = '';
 
   // Invoking the new location instance with the render function
   display_location_values(location_array);
