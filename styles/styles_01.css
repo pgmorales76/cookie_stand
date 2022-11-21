@@ -4,13 +4,14 @@ body {
     background: hsl(6, 93%, 71%);
     text-align: center;
     /* background-color: #7E98B5; */
-    color: #1F2A37;
+    color: #310702; 
     font-family: 'Times New Roman', Times, serif;
 }
 
-h1 {
-    color: #1F2A37;
-    font-size: 2.6em;
+h1, h2, h3, h4, h5, h6 {
+    color: #630d03;
+    /* font-size: 2em; */
+    font-family: 'Ubuntu', sans-serif;
     /* border-bottom: 5px solid #1F2A37; */
 }
 
@@ -48,9 +49,17 @@ form {
     display: flex;
 }
 
+td {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 main {
     margin: 2em;
     font-size: 25px;
+}
+
+table {
+    background-color: rgb(0, 140, 255);
 }
 
 a:link,
