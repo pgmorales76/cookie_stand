@@ -23,12 +23,13 @@ function Store(location, min_hourly_customer, max_hourly_customer, avg_cookie_pe
   this.simulated_amounts_of_cookies_purchased_array = [];
   // Calculate the sum of these hourly totals
   this.total_cookies_sold = 0;
+  this.display_values();
 }
 
 // Use a method of that constructor to generate a random number of customers per hour.
 Store.prototype.random_number_of_customers = function () {
   let randomNum = randBetween(this.min_hourly_customer, this.max_hourly_customer);
-  console.log(randomNum);
+  // console.log(randomNum);
   return (Math.floor(randomNum));
 };
 
@@ -37,12 +38,31 @@ Store.prototype.random_number_of_customers = function () {
 Store.prototype.simulated_amounts_of_cookies_purchased = function () {
   for (let i = 0; i < hours_of_operation.length; i++) {
     let simulated_amount = Math.round(this.random_number_of_customers() * this.avg_cookie_per_customer);
-    console.log(simulated_amount);
+    // console.log(simulated_amount);
     this.simulated_amounts_of_cookies_purchased_array.push(simulated_amount);
     this.total_cookies_sold += simulated_amount;
-    console.log(this.simulated_amounts_of_cookies_purchased);
+    // console.log(this.simulated_amounts_of_cookies_purchased);
   }
-},
+};
+
+function header_render() {
+  let hours_row = document.getElementById('hours');
+  let hours_tr = document.createElement('tr');
+  let hours_th = document.createElement('th');
+  hours_tr.appendChild(hours_th);
+  hours_th.innerText = '';
+  hours_row.appendChild(hours_th);
+  for (let i = 0; i < hours_of_operation.length; i++)
+  {
+    let hours_td = document.createElement('td');
+    hours_td.innerText = hours_of_operation[i];
+    hours_row.appendChild(hours_td);
+  }
+  let hours_total = document.createElement('td');
+  hours_total.innerText = 'Totals';
+  hours_row.appendChild(hours_total);
+}
+
 
 // Display the values of each array as unordered lists in the browser.
 // Remember 4 Steps of DOM Manipulation!
@@ -71,18 +91,19 @@ Store.prototype.display_values = function () {
   location_total.innerText = this.total_cookies_sold;
   location_tr.appendChild(location_total);
   location_data.appendChild(location_tr);
-  console.log(this.display_values);
+  // console.log(this.display_values);
 };
 
 // The method below will display values for the total number of cookies sold/hour/location
 // The header row and footer row are each created in their own stand-alone function
 function total_location_cookies() {
-  let table_footer = document.querySelector('tfoot');
+  // let table_footer = document.querySelector('tfoot');
+  let t_foot = document.getElementById('total');
   let table_footer_row = document.createElement('tr');
-  table_footer.appendChild(table_footer_row);
-  let table_header_total = document.querySelector('th');
-  table_header_total.innerText = 'Total';
-  table_footer_row.appendChild(table_header_total);
+  table_footer_row.innerText = 'Totals';
+  t_foot.appendChild(table_footer_row);
+  // table_footer_row.appendChild(table_header_total);
+  // table_footer.appendChild(table_footer_row);
   let total_location_cookies_sold = 0;
   // Be careful with this codeblock, below! Your nesting a for statement, within a for statement!
   // The first for statement iteraties through each hour of operation
@@ -91,7 +112,7 @@ function total_location_cookies() {
     // The second for statement iterates through each hour of operation at each location
     for (let j = 0; j < location_array.length; j++) {
       let table_data = location_array[j].simulated_amounts_of_cookies_purchased_array[i];
-      console.log(table_data);
+      // console.log(table_data);
       total_sold_per_hour += table_data;
       total_location_cookies_sold += table_data;
     }
@@ -121,8 +142,10 @@ function display_location_values(arr) {
   }
 }
 
+header_render();
+
 // Invoking the function to display the location values, with the location array passed in as an argument value
-display_location_values(location_array);
+// display_location_values(location_array);
 
 // Invoking the function for the total cookies in each location
 total_location_cookies();
@@ -150,12 +173,22 @@ function user_location_input(event) {
   // console.log(event);
   // What's being console logged is the form variable, the name attribute value, from the HTML input element, from sales.html; then the value property.
   // Do this for every one of the input elements!
-  console.log('Location is:', location, 'Min. Hourly Customers are:', min_hourly_customer, 'Max. Hourly Customers are:', max_hourly_customer,
-    'Avg. Cookies Purchased Per Customer are:', avg_cookie_per_customer);
+  // console.log('Location is:', location, 'Min. Hourly Customers are:', min_hourly_customer, 'Max. Hourly Customers are:', max_hourly_customer,
+  // 'Avg. Cookies Purchased Per Customer are:', avg_cookie_per_customer);
 
   // Creating a new instance of the Store constructor
   let new_location = new Store(location, min_hourly_customer, max_hourly_customer, avg_cookie_per_customer);
   location_array.push(new_location);
+  form.location.value = null;
+  form.min_hourly_customer.value = null;
+  form.max_hourly_customer.value = null;
+  form.avg_cookie_per_customer.value = null;
+  // let location_cell = document.getElementById('hours');
+  // let hours_tr = document.createElement('tr');
+  // let hours_th = document.createElement('th');
+  // hours_tr.appendChild(hours_th);
+  // hours_th.innerText = 'Locations';
+  // location_cell.appendChild(hours_th);
   let location_data = document.getElementById('location_data');
   location_data.textContent = '';
   let table_footer = document.querySelector('tfoot');
