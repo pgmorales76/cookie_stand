@@ -1,12 +1,24 @@
-'use strict';
+"use strict";
 
 // proof of life
-console.log('Hello, world!');
+console.log("Hello, world!");
 
 // hours of operation
 let hours_of_operation = [
-  '6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm',
-  '4pm', '5pm', '6pm', '7pm'
+  "6am",
+  "7am",
+  "8am",
+  "9am",
+  "10am",
+  "11am",
+  "12pm",
+  "1pm",
+  "2pm",
+  "3pm",
+  "4pm",
+  "5pm",
+  "6pm",
+  "7pm",
 ];
 
 // Use a method of each Store constructor to generate a random number of
@@ -18,8 +30,12 @@ function randBetween(min, max) {
 // Replace all of your object literals for the salmon cookie stand with a single
 // constructor function that, when called with the ‘new’ keyword, it creates a
 // new instance.
-function Store(location, min_hourly_customer, max_hourly_customer,
-               avg_cookie_per_customer) {
+function Store(
+  location,
+  min_hourly_customer,
+  max_hourly_customer,
+  avg_cookie_per_customer
+) {
   this.location = location;
   this.min_hourly_customer = min_hourly_customer;
   this.max_hourly_customer = max_hourly_customer;
@@ -34,20 +50,23 @@ function Store(location, min_hourly_customer, max_hourly_customer,
 
 // Use a method of that constructor to generate a random number of customers per
 // hour.
-Store.prototype.random_number_of_customers = function() {
-  let randomNum =
-      randBetween(this.min_hourly_customer, this.max_hourly_customer);
+Store.prototype.random_number_of_customers = function () {
+  let randomNum = randBetween(
+    this.min_hourly_customer,
+    this.max_hourly_customer
+  );
   // console.log(randomNum);
-  return (Math.floor(randomNum));
+  return Math.floor(randomNum);
 };
 
 // Calculate and store the simulated amounts of cookies purchased for each hour
 // at each location using average cookies purchased and the random number of
 // customers generated.
-Store.prototype.simulated_amounts_of_cookies_purchased = function() {
+Store.prototype.simulated_amounts_of_cookies_purchased = function () {
   for (let i = 0; i < hours_of_operation.length; i++) {
-    let simulated_amount = Math.round(this.random_number_of_customers() *
-                                      this.avg_cookie_per_customer);
+    let simulated_amount = Math.round(
+      this.random_number_of_customers() * this.avg_cookie_per_customer
+    );
     // console.log(simulated_amount);
     this.simulated_amounts_of_cookies_purchased_array.push(simulated_amount);
     this.total_cookies_sold += simulated_amount;
@@ -56,19 +75,19 @@ Store.prototype.simulated_amounts_of_cookies_purchased = function() {
 };
 
 function header_render() {
-  let hours_row = document.getElementById('hours');
-  let hours_tr = document.createElement('tr');
-  let hours_th = document.createElement('th');
+  let hours_row = document.getElementById("hours");
+  let hours_tr = document.createElement("tr");
+  let hours_th = document.createElement("th");
   hours_tr.appendChild(hours_th);
-  hours_th.innerText = '';
+  hours_th.innerText = "";
   hours_row.appendChild(hours_th);
   for (let i = 0; i < hours_of_operation.length; i++) {
-    let hours_td = document.createElement('td');
+    let hours_td = document.createElement("td");
     hours_td.innerText = hours_of_operation[i];
     hours_row.appendChild(hours_td);
   }
-  let hours_total = document.createElement('td');
-  hours_total.innerText = 'Totals';
+  let hours_total = document.createElement("td");
+  hours_total.innerText = "Totals";
   hours_row.appendChild(hours_total);
 }
 
@@ -84,20 +103,20 @@ function header_render() {
 // data instead Each cookie stand location should have a separate render()
 // method that creates and appends its row to the table The method below will
 // display values for cookies sold/hour from the method on lines 37-45
-Store.prototype.display_values = function() {
+Store.prototype.display_values = function () {
   this.simulated_amounts_of_cookies_purchased();
-  let location_data = document.getElementById('location_data');
-  let location_tr = document.createElement('tr');
-  let location_th = document.createElement('th');
+  let location_data = document.getElementById("location_data");
+  let location_tr = document.createElement("tr");
+  let location_th = document.createElement("th");
   location_tr.appendChild(location_th);
   location_th.innerText = this.location;
   for (let i = 0; i < hours_of_operation.length; i++) {
-    let location_td = document.createElement('td');
+    let location_td = document.createElement("td");
     location_td.innerText =
-        this.simulated_amounts_of_cookies_purchased_array[i];
+      this.simulated_amounts_of_cookies_purchased_array[i];
     location_tr.appendChild(location_td);
   }
-  let location_total = document.createElement('td');
+  let location_total = document.createElement("td");
   location_total.innerText = this.total_cookies_sold;
   location_tr.appendChild(location_total);
   location_data.appendChild(location_tr);
@@ -109,9 +128,9 @@ Store.prototype.display_values = function() {
 // own stand-alone function
 function total_location_cookies() {
   // let table_footer = document.querySelector('tfoot');
-  let t_foot = document.getElementById('total');
-  let table_footer_row = document.createElement('tr');
-  table_footer_row.innerText = 'Totals';
+  let t_foot = document.getElementById("total");
+  let table_footer_row = document.createElement("tr");
+  table_footer_row.innerText = "Totals";
   t_foot.appendChild(table_footer_row);
   // table_footer_row.appendChild(table_header_total);
   // table_footer.appendChild(table_footer_row);
@@ -125,32 +144,35 @@ function total_location_cookies() {
     // location
     for (let j = 0; j < location_array.length; j++) {
       let table_data =
-          location_array[j].simulated_amounts_of_cookies_purchased_array[i];
+        location_array[j].simulated_amounts_of_cookies_purchased_array[i];
       // console.log(table_data);
       total_sold_per_hour += table_data;
       total_location_cookies_sold += table_data;
     }
-    let table_footer_data = document.createElement('td');
+    let table_footer_data = document.createElement("td");
     table_footer_data.innerText = total_sold_per_hour;
     table_footer_row.appendChild(table_footer_data);
   }
-  let total_footer_data = document.createElement('td');
+  let total_footer_data = document.createElement("td");
   total_footer_data.innerText = total_location_cookies_sold;
   table_footer_row.appendChild(total_footer_data);
 }
 
 // New instances of the Store constructor
-let seattle_location = new Store('Seattle', 23, 65, 6.3);
-let tokyo_location = new Store('Tokyo', 3, 24, 1.2);
-let dubai_location = new Store('Dubai', 11, 38, 3.7);
-let paris_location = new Store('Paris', 20, 38, 2.3);
-let lima_location = new Store('Lima', 2, 16, 4.6);
+let seattle_location = new Store("Seattle", 23, 65, 6.3);
+let tokyo_location = new Store("Tokyo", 3, 24, 1.2);
+let dubai_location = new Store("Dubai", 11, 38, 3.7);
+let paris_location = new Store("Paris", 20, 38, 2.3);
+let lima_location = new Store("Lima", 2, 16, 4.6);
 
 // Declaring the location array, with references to the instances of the Store
 // constructor just above
 let location_array = [
-  seattle_location, tokyo_location, dubai_location, paris_location,
-  lima_location
+  seattle_location,
+  tokyo_location,
+  dubai_location,
+  paris_location,
+  lima_location,
 ];
 
 // Declaring the Store constructor function to display the location values, with
@@ -173,7 +195,7 @@ total_location_cookies();
 // What's passed in as an argument value for the Document method
 // getElementById() is the id attribute value for the HTML form element in
 // sales.html
-let location_form = document.getElementById('location_form');
+let location_form = document.getElementById("location_form");
 
 // The syntax here is the variable name declared for the Document method
 // getElementById(), using dot notation, and attaching the addEventListener()
@@ -181,7 +203,7 @@ let location_form = document.getElementById('location_form');
 // The first argument value is a reference to the type attribute value, given to
 // the HTML button element, the event listener "listens" for, from sales.html
 // The second argument value is the name of the event handler function
-location_form.addEventListener('submit', user_location_input);
+location_form.addEventListener("submit", user_location_input);
 
 // Adding an event handler
 function user_location_input(event) {
@@ -201,8 +223,12 @@ function user_location_input(event) {
   // are:', avg_cookie_per_customer);
 
   // Creating a new instance of the Store constructor
-  let new_location = new Store(location, min_hourly_customer,
-                               max_hourly_customer, avg_cookie_per_customer);
+  let new_location = new Store(
+    location,
+    min_hourly_customer,
+    max_hourly_customer,
+    avg_cookie_per_customer
+  );
   location_array.push(new_location);
   form.location.value = null;
   form.min_hourly_customer.value = null;
@@ -214,10 +240,10 @@ function user_location_input(event) {
   // hours_tr.appendChild(hours_th);
   // hours_th.innerText = 'Locations';
   // location_cell.appendChild(hours_th);
-  let location_data = document.getElementById('location_data');
-  location_data.textContent = '';
-  let table_footer = document.querySelector('tfoot');
-  table_footer.textContent = '';
+  let location_data = document.getElementById("location_data");
+  location_data.textContent = "";
+  let table_footer = document.querySelector("tfoot");
+  table_footer.textContent = "";
 
   // Invoking the new location instance with the render function
   display_location_values(location_array);
